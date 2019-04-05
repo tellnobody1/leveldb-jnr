@@ -34,5 +34,5 @@ Result "leveldb_put":
 ## Supported platforms
 
 * OS X
-* Linux x86/x64
-* Windows x86/x64 (backport from [Bitcoin](https://github.com/bitcoin/bitcoin/tree/master/src/leveldb) project)
+* Linux x64
+* Windows x64
