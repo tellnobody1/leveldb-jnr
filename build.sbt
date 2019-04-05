@@ -19,7 +19,8 @@ ThisBuild / scalacOptions in Compile ++= Seq(
 ThisBuild / resolvers += Resolver.bintrayRepo("zero-deps", "maven")
 ThisBuild / isSnapshot := true
 
-lazy val leveldb = project.in(file(".")).settings(
+lazy val root = project.in(file(".")).settings(
+  name := "leveldb-jnr",
   libraryDependencies ++= Seq(
     "com.github.jnr" % "jnr-ffi" % "2.1.7",
     "org.scalatest" %% "scalatest" % "3.0.1" % Test,

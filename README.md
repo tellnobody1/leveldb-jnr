@@ -2,6 +2,13 @@
 
 LevelDB JNR adapter for Scala
 
+## Install
+
+```
+resolvers += Resolver.bintrayRepo("zero-deps", "maven")
+libraryDependencies += "io.github.zero-deps" %% "leveldb-jnr" % "latest.integration"
+```
+
 ## Why JNR
 
 ### JNR
