@@ -1,28 +1,12 @@
 package leveldbjnr
 
-import java.io.File
-import java.nio.file.{Files, StandardCopyOption}
 import jnr.ffi.byref.{NumberByReference, PointerByReference}
 import jnr.ffi.{LibraryLoader, LibraryOption, Pointer, TypeAlias}
-import scala.util.{Try}
 
 object LevelDb {
-  private def copyLib(name: String): Throwable Either Long = {
-    val is = classOf[LevelDb].getResourceAsStream(s"/lib/${name}")
-    val dest = new File(s"./tmp/${name}")
-    Try {
-      dest.mkdirs()
-      Files.copy(is, dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
-    }.toEither
-  }
-
-  copyLib("libleveldb.dylib")
-  copyLib("libleveldb.so") 
-  copyLib("leveldb.dll")
-  sys.props += "java.library.path" -> "./tmp/"
   val lib = LibraryLoader.create(classOf[Api]).option(LibraryOption.IgnoreError, null).failImmediately().load("leveldb")
 
-  def checkError(error: PointerByReference): Throwable Either Unit = {
+  private[leveldbjnr] def checkError(error: PointerByReference): Throwable Either Unit = {
     val str = error.getValue
     val x = if (str != null) Left(new Exception(str.getString(0)))
     else Right(())
@@ -54,6 +38,10 @@ object LevelDb {
     lib.leveldb_destroy_db(opts, path, error)
     lib.leveldb_options_destroy(opts)
     checkError(error)
+  }
+
+  def version: (Int, Int) = {
+    (lib.leveldb_major_version(), lib.leveldb_minor_version())
   }
 }
 

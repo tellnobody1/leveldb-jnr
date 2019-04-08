@@ -5,6 +5,7 @@ LevelDB JNR adapter for Scala
 ## Install
 
 ```
+brew install leveldb
 resolvers += Resolver.jcenterRepo
 // resolvers += Resolver.bintrayRepo("zero-deps", "maven")
 libraryDependencies += "io.github.zero-deps" %% "leveldb-jnr" % "latest.integration"
@@ -31,9 +32,3 @@ Result "leveldb_put":
   CI (99.9%): [81374.455, 87374.029] (assumes normal distribution)
 # Run complete. Total time: 00:06:43
 ```
-
-## Supported platforms
-
-* OS X
-* Linux x64
-* Windows x64

@@ -10,6 +10,9 @@ class LeveldbTest extends FreeSpecLike with Matchers with EitherValues {
   val wo = WriteOpts()
 
   "leveldb" - {
+    "version" in {
+      LevelDb.version should be ((1,21))
+    }
     "destroy" in {
       LevelDb.destroy(path)
     }
