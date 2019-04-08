@@ -23,9 +23,11 @@ object LevelDb {
   val lib = LibraryLoader.create(classOf[Api]).option(LibraryOption.IgnoreError, null).failImmediately().load("leveldb")
 
   def checkError(error: PointerByReference): Throwable Either Unit = {
-    val pointerError = error.getValue
-    if (pointerError != null) Left(new Exception(pointerError.getString(0)))
+    val str = error.getValue
+    val x = if (str != null) Left(new Exception(str.getString(0)))
     else Right(())
+    lib.leveldb_free(str)
+    x
   }
 
   def open(path: String): Throwable Either LevelDb = {
