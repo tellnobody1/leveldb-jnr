@@ -31,28 +31,21 @@ object LevelDb {
   }
 
   def open(path: String): Throwable Either LevelDb = {
-    for {
-      opts <- Right(lib.leveldb_options_create())
-      _ <- Right(lib.leveldb_options_set_create_if_missing(opts, 1))
-      _ <- Right(lib.leveldb_options_set_error_if_exists(opts, 0))
-      _ <- Right(lib.leveldb_options_set_paranoid_checks(opts, 0))
-      _ <- Right(lib.leveldb_options_set_compression(opts, 1))
-      _ <- Right(lib.leveldb_options_set_write_buffer_size(opts, 200*1024*1024))
-      _ <- Right(lib.leveldb_options_set_max_open_files(opts, 2500))
-      _ <- Right(lib.leveldb_options_set_block_size(opts, 65536))
-      _ <- Right(lib.leveldb_options_set_block_restart_interval(opts, 16))
-      filterpolicy <- Right(lib.leveldb_filterpolicy_create_bloom(10))
-      _ <- Right(lib.leveldb_options_set_filter_policy(opts, filterpolicy))
-      cache <- Right(lib.leveldb_cache_create_lru(500*1024*1024))
-      _ <- Right(lib.leveldb_options_set_cache(opts, cache))
-      _ <- Right(lib.leveldb_options_set_write_buffer_size(opts, 200*1024*1024))
-      error <- Right(new PointerByReference)
-      leveldb <- Right(lib.leveldb_open(opts, path, error))
-      _ <- Right(lib.leveldb_options_destroy(opts))
-      // _ <- Right(lib.leveldb_cache_destroy(cache))
-      // _ <- Right(lib.leveldb_filterpolicy_destroy(filterpolicy))
-      _ <- checkError(error)
-    } yield LevelDb(leveldb)
+    val opts = lib.leveldb_options_create()
+    lib.leveldb_options_set_create_if_missing(opts, 1)
+    lib.leveldb_options_set_write_buffer_size(opts, 200*1024*1024)
+    lib.leveldb_options_set_max_open_files(opts, 2500)
+    lib.leveldb_options_set_block_size(opts, 64*1024)
+    val filterpolicy = lib.leveldb_filterpolicy_create_bloom(10)
+    lib.leveldb_options_set_filter_policy(opts, filterpolicy)
+    val cache = lib.leveldb_cache_create_lru(500*1024*1024)
+    lib.leveldb_options_set_cache(opts, cache)
+    val error = new PointerByReference
+    val leveldb = lib.leveldb_open(opts, path, error)
+    lib.leveldb_options_destroy(opts)
+    // lib.leveldb_cache_destroy(cache)
+    // lib.leveldb_filterpolicy_destroy(filterpolicy)
+    checkError(error).map(_ => LevelDb(leveldb))
   }
 
   def destroy(path: String): Throwable Either Unit = {
