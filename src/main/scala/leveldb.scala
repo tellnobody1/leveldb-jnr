@@ -109,11 +109,7 @@ case class LevelDb(leveldb: Pointer) {
   }
 }
 
-object WriteOpts {
-  def apply(sync: Boolean = false): WriteOpts = new WriteOpts(sync)
-}
-
-case class WriteOpts(sync: Boolean) {
+case class WriteOpts(sync: Boolean = false) {
   import LevelDb.lib
 
   private[leveldbjnr] val pointer: Pointer = lib.leveldb_writeoptions_create()
@@ -125,11 +121,7 @@ case class WriteOpts(sync: Boolean) {
   }
 }
 
-object ReadOpts {
-  def apply(verifyChecksum: Boolean = false, fillCache: Boolean = true): ReadOpts = new ReadOpts(verifyChecksum, fillCache)
-}
-
-case class ReadOpts(verifyChecksum: Boolean, fillCache: Boolean) {
+case class ReadOpts(verifyChecksum: Boolean = false, fillCache: Boolean = true) {
   import LevelDb.lib
 
   private[leveldbjnr] val pointer: Pointer = lib.leveldb_readoptions_create()
