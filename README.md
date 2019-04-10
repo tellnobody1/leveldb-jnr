@@ -5,11 +5,19 @@ LevelDB JNR adapter for Scala
 ## Install
 
 ```
-brew install leveldb
 resolvers += Resolver.jcenterRepo
 // resolvers += Resolver.bintrayRepo("zero-deps", "maven")
 libraryDependencies += "io.github.zero-deps" %% "leveldb-jnr" % "latest.integration"
 ```
+
+LevelDB must be provided. You can install it from a package manager:
+
+```bash
+brew install leveldb
+pacman -Sy leveldb
+```
+
+or build it manualy: [BUILD.md](BUILD.md).
 
 ## Why JNR
 
