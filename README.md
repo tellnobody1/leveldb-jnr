@@ -10,14 +10,7 @@ resolvers += Resolver.jcenterRepo
 libraryDependencies += "io.github.zero-deps" %% "leveldb-jnr" % "latest.integration"
 ```
 
-LevelDB must be provided. You can install it from a package manager:
-
-```bash
-brew install leveldb
-pacman -Sy leveldb
-```
-
-or build it manualy: [BUILD.md](BUILD.md).
+LevelDB of version 1.20 is bundled.
 
 ## Why JNR
 
@@ -40,3 +33,9 @@ Result "leveldb_put":
   CI (99.9%): [81374.455, 87374.029] (assumes normal distribution)
 # Run complete. Total time: 00:06:43
 ```
+
+## Supported platforms
+
+* macOS
+* Linux x64
+* Windows x64

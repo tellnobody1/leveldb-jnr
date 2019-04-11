@@ -11,7 +11,7 @@ class LeveldbTest extends FreeSpecLike with Matchers with EitherValues {
 
   "leveldb" - {
     "version" in {
-      LevelDb.version should be ((1,21))
+      LevelDb.version should be ((1,20))
     }
     "destroy" in {
       LevelDb.destroy(path)
