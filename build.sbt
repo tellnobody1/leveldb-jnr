@@ -19,6 +19,7 @@ ThisBuild / scalacOptions in Compile ++= Seq(
 ThisBuild / resolvers += Resolver.bintrayRepo("zero-deps", "maven")
 ThisBuild / isSnapshot := true
 ThisBuild / publishArtifact := true
+ThisBuild / publishArtifact in Test := true
 
 lazy val root = project.in(file(".")).settings(
   name := "leveldb-jnr",
