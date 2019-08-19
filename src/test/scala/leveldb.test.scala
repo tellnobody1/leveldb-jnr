@@ -1,8 +1,9 @@
 package leveldbjnr
 
+import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest._
 
-class LeveldbTest extends FreeSpecLike with Matchers with EitherValues {
+class LeveldbTest extends AnyFreeSpec with Matchers with EitherValues {
 
   var leveldb: LevelDb = null
   val path = "leveldb_test"

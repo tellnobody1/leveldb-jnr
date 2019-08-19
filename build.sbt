@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "2.12.8"
+ThisBuild / scalaVersion := "2.13.0"
 ThisBuild / organization := "io.github.zero-deps"
 ThisBuild / licenses := "MIT" -> url("https://raw.githubusercontent.com/zero-deps/leveldb-jnr/master/LICENSE") :: Nil
 ThisBuild / version := {
@@ -25,6 +25,6 @@ lazy val root = project.in(file(".")).settings(
   name := "leveldb-jnr",
   libraryDependencies ++= Seq(
     "com.github.jnr" % "jnr-ffi" % "2.1.7",
-    "org.scalatest" %% "scalatest" % "3.0.1" % Test,
+    "org.scalatest" %% "scalatest" % "3.1.0-SNAP13" % Test,
   )
 )
