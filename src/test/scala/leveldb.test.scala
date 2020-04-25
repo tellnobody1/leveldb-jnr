@@ -1,6 +1,7 @@
 package leveldbjnr
 
 import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.should.Matchers
 import org.scalatest._
 
 class LeveldbTest extends AnyFreeSpec with Matchers with EitherValues {
