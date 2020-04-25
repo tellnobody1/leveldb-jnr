@@ -1,7 +1,7 @@
 ThisBuild / scalaVersion := "2.13.2"
 ThisBuild / organization := "io.github.zero-deps"
 ThisBuild / licenses := "MIT" -> url("https://raw.githubusercontent.com/zero-deps/leveldb-jnr/master/LICENSE") :: Nil
-ThisBuild / version := zd.gs.git.GitOps.version
+ThisBuild / version := zero.ext.git.version
 ThisBuild / scalacOptions in Compile ++= Seq(
   "-feature",
   "-unchecked",
