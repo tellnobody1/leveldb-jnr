@@ -1,5 +1,8 @@
 # leveldb-jnr
 
+[![Bintray](https://img.shields.io/bintray/v/zero-deps/maven/leveldb-jnr.svg?label=leveldb-jnr)](https://bintray.com/zero-deps/maven/leveldb-jnr/_latestVersion)
+[![Scala CI](https://github.com/zero-deps/leveldb-jnr/workflows/Scala%20CI/badge.svg)](https://github.com/zero-deps/leveldb-jnr/actions)
+
 LevelDB JNR adapter for Scala
 
 ## Install
